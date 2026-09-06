@@ -1,0 +1,19 @@
+/* ==========================================================================
+   LIVE FLEET TRACKER - SECTION STYLESHEET
+   ========================================================================== */
+
+@import url('style.css');
+
+.fleet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}

@@ -1,0 +1,88 @@
+/* ==========================================================================
+   PLATFORM SERVICES - SECTION STYLESHEET
+   ========================================================================== */
+
+@import url('style.css');
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.service-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-card);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 8px 24px rgba(6, 182, 212, 0.15);
+}
+
+.service-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.service-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.2) 0%, rgba(13, 148, 136, 0.2) 100%);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cyan);
+}
+
+.service-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.service-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--emerald);
+  display: inline-block;
+  margin-top: 0.25rem;
+}
+
+.service-feature-list {
+  list-style: none;
+  margin: 1.25rem 0;
+  padding: 0;
+}
+
+.service-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+
+.service-feature-item svg {
+  width: 16px;
+  height: 16px;
+  color: var(--emerald);
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}

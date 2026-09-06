@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Route Optimizer | AI Smart Logistics Platform (NER)</title>
+  <meta name="description" content="Graph Neural Network (GNN) predictive delay forecasting & alternate route optimization engine for North Eastern Region" />
+  
+  <link rel="stylesheet" href="css/Ai_route.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+</head>
+<body>
+
+
+
+  <!-- Navigation Header -->
+  <header class="app-header">
+    <div class="app-container header-content">
+      <a href="index.html" class="brand-group">
+        <div class="brand-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </div>
+        <div>
+          <div class="brand-title" data-i18n="appTitle">AI Smart Logistics & Accessibility</div>
+          <div class="brand-subtitle" data-i18n="appSubtitle">North Eastern Region (NER)</div>
+        </div>
+      </a>
+
+      <nav class="nav-tabs">
+        <a href="index.html" class="nav-tab" data-i18n="navDashboard">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          Executive Dashboard
+        </a>
+        <a href="Gis_map.html" class="nav-tab" data-i18n="navMap">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" x2="9" y1="3" y2="18"/><line x1="15" x2="15" y1="6" y2="21"/></svg>
+          GIS Map
+        </a>
+        <a href="Ai_route.html" class="nav-tab active" data-i18n="navRouter">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
+          AI Route Optimizer
+        </a>
+        <a href="Live_Fleet_tracker.html" class="nav-tab" data-i18n="navFleet">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="16" height="10" x="2" y="6" rx="2"/><path d="M12 12h.01"/><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+          Live Fleet Tracker
+        </a>
+        <a href="Supply_chain.html" class="nav-tab" data-i18n="navAnalytics">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>
+          Supply Chain
+        </a>
+      </nav>
+
+      <div class="header-actions">
+
+        <button id="openReportModalBtn" class="btn-report-trigger" data-i18n="btnReport">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+          Report Incident
+        </button>
+
+        <!-- 3-Dot Options Menu -->
+        <div class="more-options-wrapper">
+          <button id="moreOptionsBtn" class="btn-more-options" title="More Options" aria-label="More Options">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="1.5"/>
+              <circle cx="12" cy="5" r="1.5"/>
+              <circle cx="12" cy="19" r="1.5"/>
+            </svg>
+          </button>
+          <div id="moreOptionsDropdown" class="more-options-dropdown">
+            <a href="profile.html" class="dropdown-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              User Profile
+            </a>
+            <a href="service.html" class="dropdown-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              Platform Services
+            </a>
+            <a href="resource.html" class="dropdown-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              Resources & Data
+            </a>
+            <a href="setting.html" class="dropdown-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              Settings
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="about_us.html" class="dropdown-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              About Us (SIH 26002)
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- AI Route Optimizer Body -->
+  <main class="app-container" style="padding: 1.5rem 0;">
+    <div class="router-layout">
+      <!-- Input Controls -->
+      <div class="form-card">
+        <h3 style="font-size:1.15rem; font-weight:800; margin-bottom:1rem; color:#fff;" data-i18n="navRouter">
+          Graph Neural Network Route Optimizer
+        </h3>
+        
+        <form id="aiRouterForm">
+          <div class="form-group">
+            <label class="form-label" for="originSelect">Origin Supply Hub</label>
+            <select id="originSelect" class="form-control">
+              <option value="Guwahati">Guwahati Hub (Assam)</option>
+              <option value="Tezpur">Tezpur Supply Base (Assam)</option>
+              <option value="Silchar">Silchar Junction (Assam)</option>
+              <option value="Dimapur">Dimapur Railhead (Nagaland)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="destSelect">Destination Capital / District</label>
+            <select id="destSelect" class="form-control">
+              <option value="Imphal">Imphal (Manipur)</option>
+              <option value="Aizawl">Aizawl (Mizoram)</option>
+              <option value="Agartala">Agartala (Tripura)</option>
+              <option value="Itanagar">Itanagar (Arunachal Pradesh)</option>
+              <option value="Gangtok">Gangtok (Sikkim)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="cargoTypeSelect">Essential Cargo Category</label>
+            <select id="cargoTypeSelect" class="form-control">
+              <option value="Medical">Essential Vaccines & Medicines</option>
+              <option value="Food">PDS Rice, Pulses & Grains</option>
+              <option value="Oxygen">Medical Oxygen Cylinders</option>
+              <option value="Construction">Infrastructure & Bridge Repair Steel</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-primary" data-i18n="btnCalculate">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
+            Calculate AI Optimal Route
+          </button>
+        </form>
+
+        <div style="margin-top:1.5rem; border-top:1px solid rgba(255,255,255,0.1); padding-top:1rem;">
+          <button class="btn-trigger-landslide" style="width:100%; background:linear-gradient(135deg, #f43f5e 0%, #dc2626 100%); color:#fff; font-weight:800; padding:10px 14px; border-radius:6px; border:none; cursor:pointer; font-size:0.85rem; display:inline-flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 4px 15px rgba(244,63,94,0.3);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+            🚨 Emergency Trigger: Simulate NH-27 Landslide
+          </button>
+        </div>
+      </div>
+
+      <!-- Output Results & Interactive Map -->
+      <div>
+        <div id="routerResult" class="card-panel" style="margin-bottom:1.5rem;">
+          <div class="panel-header">
+            <h3 class="panel-title">AI Delay Forecasting & Alternate Route Recommendation</h3>
+            <span class="badge-status success">GNN Confidence: 96.4%</span>
+          </div>
+
+          <div class="route-comparison-grid">
+            <div class="route-option-card recommended">
+              <span class="route-badge">AI RECOMMENDED SAFE ROUTE</span>
+              <div class="route-name">via Tezpur & Dimapur Northern Bypass</div>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.4rem;">
+                Bypasses Sonapur Landslide (NH-27) & Barak River Floods.
+              </p>
+              
+              <div class="route-stats">
+                <div>
+                  <div class="stat-num">520 km</div>
+                  <div class="stat-label">Distance</div>
+                </div>
+                <div>
+                  <div class="stat-num" style="color:var(--emerald);">13.8 hrs</div>
+                  <div class="stat-label">Estimated ETA</div>
+                </div>
+                <div>
+                  <div class="stat-num" style="color:var(--emerald);">12%</div>
+                  <div class="stat-label">Disruption Risk</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="route-option-card">
+              <span class="route-badge risk">HIGH DISRUPTION RISK</span>
+              <div class="route-name">Direct Highway (via NH-27 & NH-37)</div>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.4rem;">
+                Landslide at Sonapur. Predicted Delay: <b>+14.0 Hours</b>.
+              </p>
+              
+              <div class="route-stats">
+                <div>
+                  <div class="stat-num">485 km</div>
+                  <div class="stat-label">Distance</div>
+                </div>
+                <div>
+                  <div class="stat-num" style="color:var(--rose);">26.5 hrs</div>
+                  <div class="stat-label">Total Time</div>
+                </div>
+                <div>
+                  <div class="stat-num" style="color:var(--rose);">88%</div>
+                  <div class="stat-label">Disruption Risk</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-panel">
+          <div class="panel-header">
+            <h3 class="panel-title">Spatial Route Visualizer</h3>
+          </div>
+          <div class="map-wrapper" style="height:380px;">
+            <div id="gisMap" style="width:100%; height:100%;"></div>
+          </div>
+        </div>
+
+        <div id="multiModalSwapBanner" style="display:none;"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Incident Modal -->
+  <div id="incidentModal" class="modal-backdrop">
+    <div class="modal-content">
+      <button id="closeReportModalBtn" class="modal-close-btn">&times;</button>
+      <h3 style="font-size:1.25rem; font-weight:800; color:#fff; margin-bottom:0.3rem;">Field Officer Incident Upload</h3>
+      <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:1.25rem;">Upload geo-tagged road damage or landslide updates.</p>
+      
+      <form id="incidentForm">
+        <div class="form-group">
+          <label class="form-label" for="incidentType">Disruption Category</label>
+          <select id="incidentType" class="form-control" required>
+            <option value="Landslide">Landslide / Debris Blockage</option>
+            <option value="Monsoon Flood">Monsoon Flash Flood</option>
+            <option value="Bridge Damage">Bridge Damage / Defect</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="incidentLoc">District & Highway Location</label>
+          <input id="incidentLoc" type="text" class="form-control" placeholder="e.g. NH-27 Sonapur, Meghalaya" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="incidentSeverity">Severity</label>
+          <select id="incidentSeverity" class="form-control" required>
+            <option value="Critical">Critical (Blocked)</option>
+            <option value="Warning">Warning (Restricted)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="incidentDesc">Geo-Tagged Field Notes</label>
+          <textarea id="incidentDesc" rows="3" class="form-control" placeholder="Describe field conditions..."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="incidentImage">Attach Site Photograph (Optional)</label>
+          <input id="incidentImage" type="file" accept="image/*" class="form-control" />
+        </div>
+        <button type="submit" class="btn-primary" style="background:linear-gradient(135deg, var(--rose) 0%, #e11d48 100%);">Submit Incident Report</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="app-container">Team ICONIC · AI Route Optimization Engine</div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

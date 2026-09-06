@@ -1,0 +1,31 @@
+/* ==========================================================================
+   AI ROUTE OPTIMIZER - SECTION STYLESHEET
+   ========================================================================== */
+
+@import url('style.css');
+
+.router-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .router-layout {
+    grid-template-columns: 380px 1fr;
+  }
+}
+
+.route-option-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  position: relative;
+  transition: var(--transition);
+}
+
+.route-option-card.recommended {
+  border-color: var(--emerald);
+  box-shadow: 0 0 20px var(--emerald-glow);
+}

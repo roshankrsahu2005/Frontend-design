@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Platform Services | AI Smart Logistics Platform (NER)</title>
+  <meta name="description" content="Core Services & AI Modules of SIH 2026 PS 26002 Platform for North Eastern Region Logistics" />
+  
+  <link rel="stylesheet" href="css/service.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+</head>
+<body>
+
+  <!-- Main Navigation Header -->
+  <header class="app-header">
+    <div class="app-container header-content">
+      <a href="index.html" class="brand-group">
+        <div class="brand-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </div>
+        <div>
+          <div class="brand-title" data-i18n="appTitle">AI Smart Logistics & Accessibility Platform</div>
+          <div class="brand-subtitle" data-i18n="appSubtitle">North Eastern Region (NER) Connectivity Intelligence</div>
+        </div>
+      </a>
+
+      <!-- Page Links -->
+      <nav class="nav-tabs">
+        <a href="index.html" class="nav-tab" data-i18n="navDashboard">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          Executive Dashboard
+        </a>
+        <a href="Gis_map.html" class="nav-tab" data-i18n="navMap">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" x2="9" y1="3" y2="18"/><line x1="15" x2="15" y1="6" y2="21"/></svg>
+          GIS Map
+        </a>
+        <a href="Ai_route.html" class="nav-tab" data-i18n="navRouter">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
+          AI Route Optimizer
+        </a>
+        <a href="Live_Fleet_tracker.html" class="nav-tab" data-i18n="navFleet">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="16" height="10" x="2" y="6" rx="2"/><path d="M12 12h.01"/><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+          Live Fleet Tracker
+        </a>
+        <a href="Supply_chain.html" class="nav-tab" data-i18n="navAnalytics">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>
+          Supply Chain
+        </a>
+      </nav>
+
+      <div class="header-actions">
+
+        <button id="openReportModalBtn" class="btn-report-trigger" data-i18n="btnReport">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+          Report Incident
+        </button>
+
+        <!-- 3-Dot Options Menu -->
+        <div class="more-options-wrapper">
+          <button id="moreOptionsBtn" class="btn-more-options" title="More Options" aria-label="More Options">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="1.5"/>
+              <circle cx="12" cy="5" r="1.5"/>
+              <circle cx="12" cy="19" r="1.5"/>
+            </svg>
+          </button>
+          <div id="moreOptionsDropdown" class="more-options-dropdown">
+            <a href="profile.html" class="dropdown-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              User Profile
+            </a>
+            <a href="service.html" class="dropdown-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              Platform Services
+            </a>
+            <a href="resource.html" class="dropdown-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              Resources & Data
+            </a>
+            <a href="setting.html" class="dropdown-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              Settings
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="about_us.html" class="dropdown-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              About Us (SIH 26002)
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Platform Services Main Content -->
+  <main class="app-container" style="padding: 2rem 0;">
+    <div style="margin-bottom: 2rem;">
+      <h1 style="font-size:1.8rem; font-weight:800; color:#fff;">Platform Services & Capabilities</h1>
+      <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.3rem;">
+        Intelligent logistics engines tailored for mountain pass navigation, flood detours, and emergency supply routing.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Service 1 -->
+      <div class="service-card">
+        <div class="service-header">
+          <div class="service-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
+          </div>
+          <div>
+            <div class="service-title">Graph Neural Network Route Optimizer</div>
+            <span class="service-badge">AI Model Active</span>
+          </div>
+        </div>
+        <p style="font-size:0.84rem; color:var(--text-muted);">
+          Predictive delay forecasting engine that analyzes topological road networks, rainfall indices, and historical landslide data to compute safe alternate routes.
+        </p>
+        <ul class="service-feature-list">
+          <li class="service-feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Sub-hour delay risk probability scoring
+          </li>
+          <li class="service-feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Automatic bypass calculation for Sonapur & NH-27 blockages
+          </li>
+          <li class="service-feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Cargo priority routing (Vaccines vs Construction)
+          </li>
+        </ul>
+        <a href="Ai_route.html" class="btn-primary" style="margin-top:auto; font-size:0.8rem;">Launch Route Optimizer &rarr;</a>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-card">
+        <div class="service-header">
+          <div class="service-icon" style="color:var(--emerald);">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" x2="9" y1="3" y2="18"/><line x1="15" x2="15" y1="6" y2="21"/></svg>
+          </div>
+          <div>
+            <div class="service-title">GIS Spatial Accessibility Layer</div>
+            <span class="service-badge" style="background:rgba(6, 182, 212, 0.15); color:var(--cyan);">Geospatial Live</span>
+          </div>
+        </div>
+        <p style="font-size:0.84rem; color:var(--text-muted);">
+          Interactive OpenStreetMap tile layer rendering supply hubs, active blockades, and moving fleet markers across all 8 North Eastern states.
+        </p>
+        <ul class="service-feature-list">
+          <li class="service-feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            State-by-state accessibility coverage
+          </li>
+          <li class="service-feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Clickable popup markers with live telemetry
+          </li>
+          <li class="service-feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Light and Dark GIS tile map customization
+          </li>
+        </ul>
+        <a href="Gis_map.html" class="btn-primary" style="margin-top:auto; font-size:0.8rem;">Open GIS Map &rarr;</a>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-card">
+        <div class="service-header">
+          <div class="service-icon" style="color:var(--amber);">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="16" height="10" x="2" y="6" rx="2"/><path d="M12 12h.01"/><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+          </div>
+          <div>
+            <div class="service-title">Live GPS Fleet Telemetry</div>
+            <span class="service-badge" style="background:rgba(245, 158, 11, 0.15); color:var(--amber);">Satellite Online</span>
+          </div>
+        </div>
+        <p style="font-size:0.84rem; color:var(--text-muted);">
+          Real-time vehicle movement tracking for trucks transporting essential medicines, oxygen cylinders, food grains, and bridge repair cement.
+        </p>
+        <ul class="service-feature-list">
+          <li class="service-feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            4-second satellite coordinate animation loop
+          </li>
+          <li class="service-feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Driver contact and exact ETA calculation
+          </li>
+          <li class="service-feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Automated alert badges for delayed shipments
+          </li>
+        </ul>
+        <a href="Live_Fleet_tracker.html" class="btn-primary" style="margin-top:auto; font-size:0.8rem;">View Live Fleets &rarr;</a>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="service-card">
+        <div class="service-header">
+          <div class="service-icon" style="color:var(--rose);">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="service-title">Field Incident Report & Offline Sync</div>
+            <span class="service-badge" style="background:rgba(244, 63, 94, 0.15); color:var(--rose);">Local Storage Sync</span>
+          </div>
+        </div>
+        <p style="font-size:0.84rem; color:var(--text-muted);">
+          Geo-tagged photo upload modal allowing field officers to report landslides or flash floods even in low-network remote areas with offline queuing.
+        </p>
+        <ul class="service-feature-list">
+          <li class="service-feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Optional photograph attachment with preview
+          </li>
+          <li class="service-feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Automatic queueing when offline, auto-sync on reconnect
+          </li>
+          <li class="service-feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Instant alert stream update for command officers
+          </li>
+        </ul>
+        <button id="openReportModalBtnService" class="btn-primary" style="margin-top:auto; font-size:0.8rem; background:linear-gradient(135deg, var(--rose) 0%, #e11d48 100%);">Trigger Incident Upload &rarr;</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Incident Modal -->
+  <div id="incidentModal" class="modal-backdrop">
+    <div class="modal-content">
+      <button id="closeReportModalBtn" class="modal-close-btn">&times;</button>
+      <h3 style="font-size:1.25rem; font-weight:800; color:#fff; margin-bottom:0.3rem;">Field Officer Incident Upload</h3>
+      <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:1.25rem;">Upload geo-tagged road damage or landslide updates.</p>
+      
+      <form id="incidentForm">
+        <div class="form-group">
+          <label class="form-label" for="incidentType">Disruption Category</label>
+          <select id="incidentType" class="form-control" required>
+            <option value="Landslide">Landslide / Debris Blockage</option>
+            <option value="Monsoon Flood">Monsoon Flash Flood</option>
+            <option value="Bridge Damage">Bridge Damage / Defect</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="incidentLoc">District & Highway Location</label>
+          <input id="incidentLoc" type="text" class="form-control" placeholder="e.g. NH-27 Sonapur, Meghalaya" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="incidentSeverity">Severity</label>
+          <select id="incidentSeverity" class="form-control" required>
+            <option value="Critical">Critical (Blocked)</option>
+            <option value="Warning">Warning (Restricted)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="incidentDesc">Geo-Tagged Field Notes</label>
+          <textarea id="incidentDesc" rows="3" class="form-control" placeholder="Describe field conditions..."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="incidentImage">Attach Site Photograph (Optional)</label>
+          <input id="incidentImage" type="file" accept="image/*" class="form-control" />
+        </div>
+        <button type="submit" class="btn-primary" style="background:linear-gradient(135deg, var(--rose) 0%, #e11d48 100%);">Submit Incident Report</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="app-container">Team ICONIC · Platform Services</div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.getElementById('openReportModalBtnService')?.addEventListener('click', () => {
+      document.getElementById('incidentModal')?.classList.add('active');
+    });
+  </script>
+</body>
+</html>
